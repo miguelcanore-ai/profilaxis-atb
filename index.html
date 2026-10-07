@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#102a43">
+<title>Profilaxis ATB · Quirófano</title>
+<style>
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:#eef2f6;color:#17212b;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif}
+header{background:#102a43;color:white;padding:20px 17px;position:sticky;top:0;z-index:5}
+h1{font-size:21px;margin:0} header p{font-size:12px;color:#d8e5ef;margin:5px 0 0}
+main{max-width:700px;margin:auto;padding:14px}
+.card{background:white;border-radius:15px;padding:16px;margin-bottom:13px;box-shadow:0 2px 9px #0001}
+.dropdown{position:relative}
+.dropdown summary{list-style:none;cursor:pointer;border:1px solid #c8d1da;border-radius:11px;padding:14px;font-size:16px;background:white;font-weight:700}
+.dropdown summary::-webkit-details-marker{display:none}
+.menu{position:absolute;left:0;right:0;top:56px;background:white;border:1px solid #ccd5dd;border-radius:11px;box-shadow:0 7px 20px #0002;z-index:10;overflow:hidden}
+.menu a{display:block;padding:13px 14px;text-decoration:none;color:#17212b;border-bottom:1px solid #edf0f2;font-size:14px}
+.menu a:hover{background:#edf5fb}
+.result{border-left:6px solid #1672b8}
+.result h2{margin:0 0 8px;font-size:19px}
+.answer{font-size:23px;font-weight:800;line-height:1.3}
+.note{background:#fff5da;border:1px solid #eed28f;border-radius:10px;padding:11px;margin-top:10px;font-size:13px;line-height:1.45}
+.info{font-size:13px;color:#64717d;line-height:1.45}
+.result{display:none}
+.result:target{display:block}
+/* Al seleccionar una cirugía, el resultado se convierte en target y el menú se oculta automáticamente. */
+main:has(.result:target) .dropdown{display:none}
+main:has(.result:target) .card:first-child:after{content:"✓ Cirugía seleccionada";display:block;margin-top:10px;color:#1672b8;font-size:13px;font-weight:700}
+.back{display:inline-block;margin-top:12px;font-size:13px;color:#1672b8;text-decoration:none}
+.choice{display:inline-block;background:#edf5fb;border:1px solid #bdd5e6;border-radius:9px;padding:10px;margin:5px 4px 0 0;text-decoration:none;color:#123b59;font-weight:700;font-size:13px}
+.home{display:block;text-align:center;margin:12px 0 25px;color:#1672b8;text-decoration:none}
+</style>
+
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon-180.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Profilaxis ATB">
+<meta name="mobile-web-app-capable" content="yes">
+</head>
+<body>
+<header><h1>💉 Profilaxis antibiótica preoperatoria</h1><p>Consulta rápida basada en el protocolo aportado.</p></header>
+<main id="inicio">
+<div class="card">
+<div style="font-weight:800;margin-bottom:9px">TIPO DE CIRUGÍA</div>
+<details class="dropdown">
+<summary>▼ Selecciona la cirugía</summary>
+<div class="menu">
+<a href="#colon">Cirugía de colon urgente o electiva</a>
+<a href="#append">Apendicectomía (no complicada)</a>
+<a href="#chole">Colecistectomía</a>
+<a href="#choledo">Coledocolitiasis</a>
+<a href="#hepatectomy">Hepatectomía</a>
+<a href="#pancreas">Pancreatectomía</a>
+<a href="#hernia">Herniorrafia / Hernioplastia</a>
+<a href="#eventro">Eventrorrafia / Eventroplastia</a>
+<a href="#esogastro">Cirugía de esófago y estómago, incluida antirreflujo</a>
+<a href="#esocolon">Cirugía esofágica con coloplastia</a>
+<a href="#intestino">Cirugía del intestino delgado</a>
+<a href="#bazo">Cirugía del bazo</a>
+<a href="#hipec">Cirugía de la carcinomatosis peritoneal / HIPEC</a>
+<a href="#tiroides">Cirugía tiroidea y paratiroidea / ganglios</a>
+</div>
+</details>
+</div>
+
+<div id="colon" class="card result"><h2>Cirugía de colon urgente o electiva</h2><div class="answer">Cefazolina 2 g + Metronidazol 500 mg.</div><a class="choice" href="#colon-alergia">Alergia</a><a class="choice" href="#colon-mdr">BLEE / carbapenemasa</a><div class="note">En pacientes colonizados por enterobacterias BLEE y/o productoras de carbapenemasas: contactar con Enfermedades Infecciosas. Si no es posible: Amikacina 15 mg/kg + Metronidazol 500 mg IV.</div></div>
+<div id="colon-alergia" class="card result"><h2>Colon · alergia</h2><div class="answer">Gentamicina 5 mg/kg + Metronidazol 500 mg IV.</div></div>
+<div id="colon-mdr" class="card result"><h2>Colon · BLEE / carbapenemasa</h2><div class="answer">Contactar con Enfermedades Infecciosas.</div><div class="note">Si no es posible: Amikacina 15 mg/kg + Metronidazol 500 mg IV.</div></div>
+
+<div id="append" class="card result"><h2>Apendicectomía (no complicada)</h2><div class="answer">Amoxicilina/Clavulánico 2 g.</div><a class="choice" href="#append-alergia">Alergia</a></div>
+<div id="append-alergia" class="card result"><h2>Apendicectomía · alergia</h2><div class="answer">Gentamicina 5 mg/kg + Metronidazol 500 mg.</div></div>
+
+<div id="chole" class="card result"><h2>Colecistectomía</h2><div class="answer">Cefazolina 2 g.</div><div class="note">El documento indica profilaxis solo si existe alguno de los criterios de alto riesgo. <a class="choice" href="#chole-normal">Ver criterios</a></div></div>
+<div id="chole-normal" class="card result"><h2>Colecistectomía · criterios de alto riesgo</h2><div class="answer">Cefazolina 2 g.</div><div class="note">Intervención urgente · inmunopresión · diabetes mellitus · embarazo · edad ≥70 años · ASA ≥3 · pancreatitis biliar previa · colecistitis aguda últimos 6 meses · prótesis biliar · apertura incidental de vesícula.<br><br><a class="choice" href="#chole-alergia">Si alergia</a></div></div>
+<div id="chole-alergia" class="card result"><h2>Colecistectomía · alergia</h2><div class="answer">Clindamicina 900 mg + Gentamicina 5 mg/kg.</div></div>
+
+<div id="choledo" class="card result"><h2>Coledocolitiasis</h2><div class="answer">Cefazolina 2 g.</div><div class="note">La coledocolitiasis se considera de forma independiente de los criterios de gravedad de la colecistitis.</div><a class="choice" href="#choledo-alergia">Alergia</a></div>
+<div id="choledo-alergia" class="card result"><h2>Coledocolitiasis · alergia</h2><div class="answer">Clindamicina 900 mg + Gentamicina 5 mg/kg.</div></div>
+
+<div id="hepatectomy" class="card result"><h2>Hepatectomía</h2><div class="answer">Cefazolina 2 g.</div><div class="note">Solo recomendada en resección mayor (&gt;3 segmentos) y si se asocia resección de vía biliar principal.<br><br>Si hay cultivos biliares recientes: ajustar según antibiograma.<br><br><a class="choice" href="#hepatectomy-alergia">Alergia</a> <a class="choice" href="#hepatectomy-mdr">BLEE / carbapenemasa</a></div></div>
+<div id="hepatectomy-alergia" class="card result"><h2>Hepatectomía · alergia</h2><div class="answer">Clindamicina 900 mg + Gentamicina 5 mg/kg.</div></div>
+<div id="hepatectomy-mdr" class="card result"><h2>Hepatectomía · BLEE / carbapenemasa</h2><div class="answer">Avisar a Enfermedades Infecciosas.</div><div class="note">Si no es posible: Cefazolina 2 g + Amikacina 15 mg/kg.<br><br>Si alergia: Clindamicina 900 mg + Amikacina 15 mg/kg.</div></div>
+
+<div id="pancreas" class="card result"><h2>Pancreatectomía</h2><div class="answer">Cefazolina 2 g.</div><div class="note">Sin instrumentación de vía biliar. Si cultivos recientes de bilis: ajustar según antibiograma (contactar con Infecciosas).<br><br><a class="choice" href="#pancreas-biliar">Instrumentación previa de vía biliar</a> <a class="choice" href="#pancreas-alergia">Alergia</a> <a class="choice" href="#pancreas-mdr">BLEE / carbapenemasa</a></div></div>
+<div id="pancreas-biliar" class="card result"><h2>Pancreatectomía · instrumentación biliar</h2><div class="answer">Amoxicilina/Clavulánico 2 g + Gentamicina 5 mg/kg.</div></div>
+<div id="pancreas-alergia" class="card result"><h2>Pancreatectomía · alergia</h2><div class="answer">Clindamicina 900 mg + Gentamicina 5 mg/kg.</div></div>
+<div id="pancreas-mdr" class="card result"><h2>Pancreatectomía · BLEE / carbapenemasa</h2><div class="answer">Clindamicina 900 mg + Gentamicina 5 mg/kg.</div></div>
+
+<div id="hernia" class="card result"><h2>Herniorrafia / Hernioplastia</h2><div class="answer">Cefazolina 2 g.</div><div class="note"><a class="choice" href="#hernia-sarm">Colonización SARM</a> <a class="choice" href="#hernia-alergia">Alergia</a></div></div>
+<div id="eventro" class="card result"><h2>Eventrorrafia / Eventroplastia</h2><div class="answer">Cefazolina 2 g.</div><div class="note"><a class="choice" href="#hernia-sarm">Colonización SARM</a> <a class="choice" href="#hernia-alergia">Alergia</a></div></div>
+<div id="hernia-sarm" class="card result"><h2>Hernia/eventración · SARM</h2><div class="answer">Cefazolina 2 g + Teicoplanina 800 mg.</div><div class="note">Si alergia: Teicoplanina 800 mg.</div></div>
+<div id="hernia-alergia" class="card result"><h2>Hernia/eventración · alergia</h2><div class="answer">Teicoplanina 800 mg.</div></div>
+
+<div id="esogastro" class="card result"><h2>Cirugía de esófago y estómago, incluida antirreflujo</h2><div class="answer">Cefazolina 2 g.</div><div class="note">Solo si apertura de mucosa, colocación de implante o factores de riesgo (inmunosupresión, obesidad...).<br><br><a class="choice" href="#esogastro-alergia">Alergia</a></div></div>
+<div id="esogastro-alergia" class="card result"><h2>Esófago/estómago · alergia</h2><div class="answer">Clindamicina 900 mg + Gentamicina 5 mg/kg.</div></div>
+
+<div id="esocolon" class="card result"><h2>Cirugía esofágica con coloplastia</h2><div class="answer">Cefazolina 2 g + Metronidazol 500 mg.</div><div class="note"><a class="choice" href="#esocolon-alergia">Alergia</a></div></div>
+<div id="esocolon-alergia" class="card result"><h2>Cirugía esofágica con coloplastia · alergia</h2><div class="answer">Clindamicina 900 mg + Gentamicina 5 mg/kg.</div></div>
+
+<div id="intestino" class="card result"><h2>Cirugía del intestino delgado</h2><div class="answer">Cefazolina 2 g.</div><div class="note"><a class="choice" href="#intestino-obstruccion">Obstrucción intestinal</a> <a class="choice" href="#intestino-alergia">Alergia</a></div></div>
+<div id="intestino-obstruccion" class="card result"><h2>Intestino delgado · obstrucción</h2><div class="answer">Cefazolina 2 g + Metronidazol 500 mg.</div><div class="note">Si alergia: Gentamicina 5 mg/kg + Metronidazol 500 mg.</div></div>
+<div id="intestino-alergia" class="card result"><h2>Intestino delgado · alergia</h2><div class="answer">Gentamicina 5 mg/kg + Metronidazol 500 mg.</div></div>
+
+<div id="bazo" class="card result"><h2>Cirugía del bazo</h2><div class="answer">Cefazolina 2 g.</div><div class="note">Solo en cirugía urgente o presencia de factores de riesgo (inmunosupresión, neoplasia, intervención &gt;120 min o sangrado importante...).<br><br><a class="choice" href="#bazo-alergia">Alergia</a></div></div>
+<div id="bazo-alergia" class="card result"><h2>Bazo · alergia</h2><div class="answer">Clindamicina 900 mg + Gentamicina 5 mg/kg.</div></div>
+
+<div id="hipec" class="card result"><h2>Cirugía de la carcinomatosis peritoneal / HIPEC</h2><div class="answer">Cefazolina 2 g + Metronidazol 500 mg cada 8 horas.</div><div class="note">El documento indica mantener la profilaxis 48 h. <a class="choice" href="#hipec-cis">HIPEC con cisplatino</a> <a class="choice" href="#hipec-alergia">Alergia</a></div></div>
+<div id="hipec-cis" class="card result"><h2>HIPEC con cisplatino</h2><div class="answer">Cefazolina 2 g + Metronidazol 500 mg cada 8 horas.</div><div class="note">Monitorizar niveles de Gentamicina para evitar nefrotoxicidad añadida.</div></div>
+<div id="hipec-alergia" class="card result"><h2>HIPEC · alergia</h2><div class="answer">Gentamicina 5 mg/kg + Metronidazol 500 mg.</div></div>
+
+<div id="tiroides" class="card result"><h2>Cirugía tiroidea y paratiroidea / exéresis de ganglios linfáticos</h2><div class="answer">NO PRECISA.</div></div>
+
+<a class="home" href="#inicio">↩ Cambiar de cirugía</a>
+</main>
+
+<script>
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("./sw.js").catch(function(){});
+}
+</script></body>
+</html>
